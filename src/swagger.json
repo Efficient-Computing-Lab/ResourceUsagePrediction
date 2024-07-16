@@ -1,0 +1,1075 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Charity Components APIs",
+    "description": "\n## Forecasting Manager\n* Forecasting **metrics**\n",
+    "version": "0.0.7"
+  },
+  "paths": {
+    "/forecasting/metrics": {
+      "post": {
+        "tags": [
+          "Forecasting Manager"
+        ],
+        "summary": "Add XR Service forecasting metrics",
+        "operationId": "addForecastingMetrics_forecasting_metrics_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ForecastMetric"
+                },
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Forecasting Manager"
+        ],
+        "summary": "Get forecasted values for all metrics",
+        "operationId": "getForecastedMetrics_forecasting_metrics_get",
+        "parameters": [
+          {
+            "name": "length",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Length"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricValuesResponse"
+                  },
+                  "title": "Response Getforecastedmetrics Forecasting Metrics Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forecasting/metrics/{xrApplicationId}": {
+      "delete": {
+        "tags": [
+          "Forecasting Manager"
+        ],
+        "summary": "Delete XR Service forecasting metrics",
+        "operationId": "deleteForecastingMetrics_forecasting_metrics__xrApplicationId__delete",
+        "parameters": [
+          {
+            "name": "xrApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Xrapplicationid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Forecasting Manager"
+        ],
+        "summary": "Get forecasted values for metrics of an XR Service",
+        "operationId": "getForecastedMetrics_forecasting_metrics__xrApplicationId__get",
+        "parameters": [
+          {
+            "name": "xrApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Xrapplicationid"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Length"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricValuesResponse"
+                  },
+                  "title": "Response Getforecastedmetrics Forecasting Metrics  Xrapplicationid  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+        "components": {
+            "schemas": {
+                "Cluster-Input": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "datacenter": {
+                            "type": "string",
+                            "title": "Datacenter"
+                        },
+                        "status": {
+                            "type": "string",
+                            "title": "Status"
+                        },
+                        "control": {
+                            "$ref": "#/components/schemas/NodeSize"
+                        },
+                        "workers": {
+                            "$ref": "#/components/schemas/NodeSize"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "datacenter",
+                        "status",
+                        "control",
+                        "workers"
+                    ],
+                    "title": "Cluster"
+                },
+                "Cluster-Output": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "datacenter": {
+                            "type": "string",
+                            "title": "Datacenter"
+                        },
+                        "status": {
+                            "type": "string",
+                            "title": "Status"
+                        },
+                        "control": {
+                            "$ref": "#/components/schemas/NodeSize"
+                        },
+                        "workers": {
+                            "$ref": "#/components/schemas/NodeSize"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "datacenter",
+                        "status",
+                        "control",
+                        "workers"
+                    ],
+                    "title": "Cluster"
+                },
+                "ClusterStatus": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "cpuUsage": {
+                            "type": "number",
+                            "title": "Cpuusage"
+                        },
+                        "ramUsage": {
+                            "type": "number",
+                            "title": "Ramusage"
+                        },
+                        "diskUsage": {
+                            "type": "number",
+                            "title": "Diskusage"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "cpuUsage",
+                        "ramUsage",
+                        "diskUsage"
+                    ],
+                    "title": "ClusterStatus"
+                },
+                "ComponentType": {
+                    "type": "string",
+                    "enum": [
+                        "Vnf",
+                        "Vl",
+                        "App"
+                    ],
+                    "title": "ComponentType"
+                },
+                "DatacenterInfo": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "location": {
+                            "$ref": "#/components/schemas/Geolocation"
+                        },
+                        "flavors": {
+                            "items": {
+                                "$ref": "#/components/schemas/FlavorSize"
+                            },
+                            "type": "array",
+                            "title": "Flavors"
+                        },
+                        "nodes": {
+                            "items": {
+                                "$ref": "#/components/schemas/NodeSize"
+                            },
+                            "type": "array",
+                            "title": "Nodes"
+                        },
+                        "gpus": {
+                            "items": {
+                                "$ref": "#/components/schemas/Gpu"
+                            },
+                            "type": "array",
+                            "title": "Gpus"
+                        },
+                        "internalBandwidth": {
+                            "type": "string",
+                            "title": "Internalbandwidth"
+                        },
+                        "internalLatency": {
+                            "type": "string",
+                            "title": "Internallatency"
+                        },
+                        "externalBandwidth": {
+                            "type": "string",
+                            "title": "Externalbandwidth"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "location",
+                        "flavors",
+                        "nodes",
+                        "gpus",
+                        "internalBandwidth",
+                        "internalLatency",
+                        "externalBandwidth"
+                    ],
+                    "title": "DatacenterInfo"
+                },
+                "DatacenterStatus": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "availableNodes": {
+                            "items": {
+                                "$ref": "#/components/schemas/NodeSize"
+                            },
+                            "type": "array",
+                            "title": "Availablenodes"
+                        },
+                        "clusters": {
+                            "items": {
+                                "$ref": "#/components/schemas/ClusterStatus"
+                            },
+                            "type": "array",
+                            "title": "Clusters"
+                        },
+                        "peers": {
+                            "items": {
+                                "$ref": "#/components/schemas/PeerStatus"
+                            },
+                            "type": "array",
+                            "title": "Peers"
+                        },
+                        "availableGpus": {
+                            "items": {
+                                "$ref": "#/components/schemas/Gpu"
+                            },
+                            "type": "array",
+                            "title": "Availablegpus"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "availableNodes",
+                        "clusters",
+                        "peers",
+                        "availableGpus"
+                    ],
+                    "title": "DatacenterStatus"
+                },
+                "EventResponse": {
+                    "properties": {
+                        "type": {
+                            "$ref": "#/components/schemas/EventType"
+                        },
+                        "xrApplicationId": {
+                            "type": "string",
+                            "title": "Xrapplicationid"
+                        },
+                        "componentType": {
+                            "$ref": "#/components/schemas/ComponentType"
+                        },
+                        "componentName": {
+                            "type": "string",
+                            "title": "Componentname"
+                        },
+                        "metricName": {
+                            "$ref": "#/components/schemas/MetricType"
+                        },
+                        "metricUnit": {
+                            "type": "string",
+                            "title": "Metricunit"
+                        },
+                        "thresholdRule": {
+                            "$ref": "#/components/schemas/RuleType"
+                        },
+                        "thresholdValue": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                }
+                            ],
+                            "title": "Thresholdvalue"
+                        },
+                        "metricValue": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                }
+                            ],
+                            "title": "Metricvalue"
+                        },
+                        "generationTimestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "Generationtimestamp"
+                        },
+                        "updateTimestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "Updatetimestamp"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "xrApplicationId",
+                        "componentType",
+                        "componentName",
+                        "metricName",
+                        "metricUnit",
+                        "thresholdRule",
+                        "thresholdValue",
+                        "metricValue",
+                        "generationTimestamp",
+                        "updateTimestamp"
+                    ],
+                    "title": "EventResponse"
+                },
+                "EventType": {
+                    "type": "string",
+                    "enum": [
+                        "ALARM",
+                        "ALERT"
+                    ],
+                    "title": "EventType"
+                },
+                "Flavor": {
+                    "type": "string",
+                    "enum": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ],
+                    "title": "Flavor"
+                },
+                "FlavorSize": {
+                    "properties": {
+                        "flavor": {
+                            "$ref": "#/components/schemas/Flavor"
+                        },
+                        "cpuSize": {
+                            "type": "integer",
+                            "title": "Cpusize"
+                        },
+                        "memSize": {
+                            "type": "integer",
+                            "title": "Memsize"
+                        },
+                        "doskSize": {
+                            "type": "integer",
+                            "title": "Dosksize"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "flavor",
+                        "cpuSize",
+                        "memSize",
+                        "doskSize"
+                    ],
+                    "title": "FlavorSize"
+                },
+                "ForecastMetric": {
+                    "properties": {
+                        "xrApplicationId": {
+                            "type": "string",
+                            "title": "Xrapplicationid"
+                        },
+                        "componentType": {
+                            "$ref": "#/components/schemas/ComponentType"
+                        },
+                        "componentName": {
+                            "type": "string",
+                            "title": "Componentname"
+                        },
+                        "metricName": {
+                            "$ref": "#/components/schemas/MetricType"
+                        },
+                        "metricUnit": {
+                            "type": "string",
+                            "title": "Metricunit"
+                        },
+                        "thresholdRule": {
+                            "$ref": "#/components/schemas/RuleType"
+                        },
+                        "thresholdValue": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                }
+                            ],
+                            "title": "Thresholdvalue"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "xrApplicationId",
+                        "componentType",
+                        "componentName",
+                        "metricName",
+                        "metricUnit",
+                        "thresholdRule",
+                        "thresholdValue"
+                    ],
+                    "title": "ForecastMetric"
+                },
+                "GPType": {
+                    "type": "string",
+                    "enum": [
+                        "STRING",
+                        "GEOLOCATION_TEXT",
+                        "GEOLOCATION_COORDS"
+                    ],
+                    "title": "GPType"
+                },
+                "Geolocation": {
+                    "properties": {
+                        "region": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Region"
+                        },
+                        "country": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Country"
+                        },
+                        "city": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "City"
+                        },
+                        "latitude": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Latitude"
+                        },
+                        "longitude": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Longitude"
+                        }
+                    },
+                    "type": "object",
+                    "title": "Geolocation"
+                },
+                "GlobalInputParameter": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "type": {
+                            "$ref": "#/components/schemas/GPType"
+                        },
+                        "value": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Value"
+                        },
+                        "geoRegion": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Georegion"
+                        },
+                        "geoCountry": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Geocountry"
+                        },
+                        "geoCity": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Geocity"
+                        },
+                        "geoLatitude": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Geolatitude"
+                        },
+                        "geoLongitude": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Geolongitude"
+                        },
+                        "geoExactMatch": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Geoexactmatch",
+                            "default": false
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "type"
+                    ],
+                    "title": "GlobalInputParameter"
+                },
+                "Gpu": {
+                    "properties": {
+                        "model": {
+                            "type": "string",
+                            "title": "Model"
+                        },
+                        "units": {
+                            "type": "integer",
+                            "title": "Units"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "model",
+                        "units"
+                    ],
+                    "title": "Gpu"
+                },
+                "HTTPValidationError": {
+                    "properties": {
+                        "detail": {
+                            "items": {
+                                "$ref": "#/components/schemas/ValidationError"
+                            },
+                            "type": "array",
+                            "title": "Detail"
+                        }
+                    },
+                    "type": "object",
+                    "title": "HTTPValidationError"
+                },
+                "Metric": {
+                    "properties": {
+                        "datacenter": {
+                            "type": "string",
+                            "title": "Datacenter"
+                        },
+                        "cluster": {
+                            "type": "string",
+                            "title": "Cluster"
+                        },
+                        "xrApplicationId": {
+                            "type": "string",
+                            "title": "Xrapplicationid"
+                        },
+                        "componentType": {
+                            "$ref": "#/components/schemas/ComponentType"
+                        },
+                        "componentName": {
+                            "type": "string",
+                            "title": "Componentname"
+                        },
+                        "metricName": {
+                            "$ref": "#/components/schemas/MetricType"
+                        },
+                        "metricUnit": {
+                            "type": "string",
+                            "title": "Metricunit"
+                        },
+                        "thresholdRule": {
+                            "$ref": "#/components/schemas/RuleType"
+                        },
+                        "thresholdValue": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                }
+                            ],
+                            "title": "Thresholdvalue"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "datacenter",
+                        "cluster",
+                        "xrApplicationId",
+                        "componentType",
+                        "componentName",
+                        "metricName",
+                        "metricUnit",
+                        "thresholdRule",
+                        "thresholdValue"
+                    ],
+                    "title": "Metric"
+                },
+                "MetricType": {
+                    "type": "string",
+                    "enum": [
+                        "cpu",
+                        "Ram",
+                        "Disk",
+                        "Bandwidth",
+                        "Latency",
+                        "Jitter",
+                        "Int",
+                        "Float"
+                    ],
+                    "title": "MetricType"
+                },
+                "MetricValue": {
+                    "properties": {
+                        "value": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                }
+                            ],
+                            "title": "Value"
+                        },
+                        "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "Timestamp"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "value",
+                        "timestamp"
+                    ],
+                    "title": "MetricValue"
+                },
+                "MetricValuesResponse": {
+                    "properties": {
+                        "xrApplicationId": {
+                            "type": "string",
+                            "title": "Xrapplicationid"
+                        },
+                        "componentType": {
+                            "$ref": "#/components/schemas/ComponentType"
+                        },
+                        "componentName": {
+                            "type": "string",
+                            "title": "Componentname"
+                        },
+                        "metricName": {
+                            "$ref": "#/components/schemas/MetricType"
+                        },
+                        "metricValues": {
+                            "items": {
+                                "$ref": "#/components/schemas/MetricValue"
+                            },
+                            "type": "array",
+                            "title": "Metricvalues"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "xrApplicationId",
+                        "componentType",
+                        "componentName",
+                        "metricName",
+                        "metricValues"
+                    ],
+                    "title": "MetricValuesResponse"
+                },
+                "NodeSize": {
+                    "properties": {
+                        "flavor": {
+                            "$ref": "#/components/schemas/Flavor"
+                        },
+                        "nodes": {
+                            "type": "integer",
+                            "title": "Nodes"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "flavor",
+                        "nodes"
+                    ],
+                    "title": "NodeSize"
+                },
+                "OutputParams": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Name"
+                        },
+                        "value": {
+                            "type": "string",
+                            "title": "Value"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "value"
+                    ],
+                    "title": "OutputParams"
+                },
+                "PeerStatus": {
+                    "properties": {
+                        "localCluster": {
+                            "type": "string",
+                            "title": "Localcluster"
+                        },
+                        "remoteCluster": {
+                            "type": "string",
+                            "title": "Remotecluster"
+                        },
+                        "receiveTraffic": {
+                            "type": "number",
+                            "title": "Receivetraffic"
+                        },
+                        "transmitTraffic": {
+                            "type": "number",
+                            "title": "Transmittraffic"
+                        },
+                        "latency": {
+                            "type": "number",
+                            "title": "Latency"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "localCluster",
+                        "remoteCluster",
+                        "receiveTraffic",
+                        "transmitTraffic",
+                        "latency"
+                    ],
+                    "title": "PeerStatus"
+                },
+                "RuleType": {
+                    "type": "string",
+                    "enum": [
+                        "gt",
+                        "ge",
+                        "lt",
+                        "le"
+                    ],
+                    "title": "RuleType"
+                },
+                "StatusType": {
+                    "type": "string",
+                    "enum": [
+                        "DEPLOYMENT_REQUEST_RECEIVED",
+                        "FINDING_BEST_TOPOLOGY",
+                        "PROVISIONING_CLUSTERS",
+                        "DEPLOYING_XR_SERVICE_COMPONENTS",
+                        "RUNNING",
+                        "ERROR"
+                    ],
+                    "title": "StatusType"
+                },
+                "ValidationError": {
+                    "properties": {
+                        "loc": {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]
+                            },
+                            "type": "array",
+                            "title": "Location"
+                        },
+                        "msg": {
+                            "type": "string",
+                            "title": "Message"
+                        },
+                        "type": {
+                            "type": "string",
+                            "title": "Error Type"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "loc",
+                        "msg",
+                        "type"
+                    ],
+                    "title": "ValidationError"
+                },
+                "XrApplicationBody": {
+                    "properties": {
+                        "globalInputParameters": {
+                            "items": {
+                                "$ref": "#/components/schemas/GlobalInputParameter"
+                            },
+                            "type": "array",
+                            "title": "Globalinputparameters"
+                        },
+                        "toscalModel": {
+                            "type": "string",
+                            "title": "Toscalmodel"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "globalInputParameters",
+                        "toscalModel"
+                    ],
+                    "title": "XrApplicationBody"
+                },
+                "XrApplicationDeployBody": {
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "title": "Id"
+                        },
+                        "toscalFullModel": {
+                            "type": "string",
+                            "title": "Toscalfullmodel"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "toscalFullModel"
+                    ],
+                    "title": "XrApplicationDeployBody"
+                },
+                "XrApplicationResponse": {
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "title": "Id"
+                        },
+                        "status": {
+                            "$ref": "#/components/schemas/StatusType"
+                        },
+                        "outputParameters": {
+                            "items": {
+                                "$ref": "#/components/schemas/OutputParams"
+                            },
+                            "type": "array",
+                            "title": "Outputparameters"
+                        }
+                    },
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "status",
+                        "outputParameters"
+                    ],
+                    "title": "XrApplicationResponse"
+                }
+            }
+        }
+    }

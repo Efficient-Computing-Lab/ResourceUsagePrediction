@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  forecasting:
+    image: forecasting:v1.3 
+    environment:
+      MONITORING_IP: 0.0.0.0:5000
+    ports:
+      - "8080:80"  # Example port mapping, adjust as needed
